@@ -1,82 +1,65 @@
 # 🧭 SafePath AI
 
-### Intelligent Route Search for Safer & Accessible Mobility
+### Intelligent Route Search for Safer and Accessible Mobility
 
-SafePath AI is an AI-assisted route planning and comparison system that combines
-traditional graph-search algorithms with machine-learning-based road risk
-classification.
+SafePath AI is an AI-assisted route planning and comparison system that finds routes between locations while considering different user requirements such as normal travel, wheelchair accessibility, and women's safety.
 
-The system compares **Dijkstra's Algorithm** and **A\* Algorithm** to find
-routes between locations while adapting the route according to the selected
-mobility requirement:
-
-- 🛣️ Normal Route
-- ♿ Wheelchair Accessibility
-- 👩 Women Safety
-
-The project also provides a visual representation of explored nodes and the
-selected route, making the search behaviour of both algorithms easy to understand.
+The project combines traditional graph-search algorithms with machine-learning-based road risk classification to demonstrate how intelligent routing can be used for safer and more accessible mobility.
 
 ---
 
-## 🌐 Live Demo
+## 🚀 Live Demo
 
-🚀 **Try SafePath AI online:**
+🔗 **Live Application:**  
+https://safepath-ai-7cf8.onrender.com
 
-👉 https://safepath-ai-7cf8.onrender.com
-
-## 💻 Source Code
-
-The complete project source code is available on GitHub:
-
-👉 https://github.com/dataWithMuskan/SafePath-AI
+> The application is deployed using Render and can be accessed directly through the browser.
 
 ---
 
-# 🎯 Project Objective
+## 🎯 Project Objective
 
-Traditional shortest-path algorithms mainly focus on minimizing distance or
-travel cost.
+Traditional shortest-path systems mainly focus on distance or travel cost.
 
-However, the shortest route is not always the most suitable route.
+SafePath AI extends this idea by considering additional road characteristics such as:
 
-For example:
+- Accessibility
+- Lighting
+- Isolation
+- Public activity
+- Stairs
+- Ramps
+- Sidewalk availability
+- Road safety risk
 
-- A road may contain stairs and be unsuitable for wheelchair users.
-- A poorly lit or isolated road may have a higher safety risk.
-- A route with slightly higher cost may be preferable because it provides
-  better accessibility or safety.
+The system then compares two popular pathfinding algorithms:
 
-SafePath AI addresses this idea by combining:
+- **Dijkstra's Algorithm**
+- **A* (A-Star) Algorithm**
 
-**Graph Search + Accessibility Constraints + Safety Information + Risk Classification**
-
-to produce a more context-aware route recommendation.
+This allows users to see not only the selected route but also how efficiently each algorithm searches the road network.
 
 ---
 
-# 🧠 How SafePath AI Works
+## 🧠 How SafePath AI Works
 
-The system follows a simple pipeline:
+The system follows these main steps:
 
 ```text
 User selects Start & Destination
               ↓
-       Selects Route Mode
+       Select Route Mode
               ↓
-     Road Network / Graph
+     Build / Load Road Graph
               ↓
-   ┌──────────┴──────────┐
-   ↓                     ↓
-Dijkstra                A*
-   ↓                     ↓
-Shortest Path        Heuristic Search
-   └──────────┬──────────┘
+  Apply Accessibility / Safety Costs
               ↓
-     Route Comparison
+       Run Dijkstra Algorithm
               ↓
-    Risk Classification
+          Run A* Algorithm
               ↓
-      Final Route Result
+      Compare Search Results
               ↓
-      Visual Map Display
+    Classify Road Risk using ML
+              ↓
+       Display Recommended Route
