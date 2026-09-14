@@ -192,6 +192,18 @@ This allows the route search to prefer safer roads when possible.
 
 \---
 
+# 🧭 SafePath AI
+
+Intelligent Route Search for Safer & Accessible Mobility
+
+## 🌐 Live Demo
+
+[Open SafePath AI](https://safepath-ai-7cf8.onrender.com)
+
+## 💻 GitHub Repository
+
+This repository contains the complete source code of SafePath AI.
+
 
 
 \## 🗂️ Project Structure
