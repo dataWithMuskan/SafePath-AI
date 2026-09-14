@@ -1,0 +1,8 @@
+{
+    "wheelchair": {
+        "stairs": false,
+        "ramp_required": true,
+        "sidewalk_required": true
+    },
+    "description": "Road accessibility information for SafePath AI demonstration."
+}

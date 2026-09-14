@@ -1,0 +1,16 @@
+lighting,isolation,public_activity,stairs,ramp,sidewalk,risk
+95,10,95,0,1,1,Low
+90,15,90,0,1,1,Low
+85,20,85,0,1,1,Low
+80,25,80,0,1,1,Low
+75,30,75,0,1,1,Low
+70,35,70,0,1,1,Low
+65,45,60,0,1,1,Medium
+60,50,55,1,0,1,Medium
+55,55,50,0,0,1,Medium
+50,60,45,1,0,1,Medium
+45,65,40,1,0,0,High
+40,70,35,1,0,0,High
+35,75,30,1,0,0,High
+30,80,25,1,0,0,High
+25,90,15,1,0,0,High

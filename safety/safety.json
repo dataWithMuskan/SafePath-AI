@@ -1,0 +1,37 @@
+{
+    "A-B": {
+        "lighting": 90,
+        "isolation": 20,
+        "public_activity": 80
+    },
+
+    "B-C": {
+        "lighting": 60,
+        "isolation": 50,
+        "public_activity": 60
+    },
+
+    "B-E": {
+        "lighting": 85,
+        "isolation": 20,
+        "public_activity": 80
+    },
+
+    "D-E": {
+        "lighting": 70,
+        "isolation": 40,
+        "public_activity": 60
+    },
+
+    "E-F": {
+        "lighting": 35,
+        "isolation": 80,
+        "public_activity": 25
+    },
+
+    "E-G": {
+        "lighting": 90,
+        "isolation": 15,
+        "public_activity": 85
+    }
+}

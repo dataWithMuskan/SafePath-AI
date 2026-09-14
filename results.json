@@ -1,0 +1,39 @@
+{
+    "dijkstra": {
+        "path": [
+            "A",
+            "B",
+            "E",
+            "G"
+        ],
+        "cost": 11,
+        "explored": [
+            "A",
+            "B",
+            "E",
+            "C",
+            "D",
+            "F",
+            "G"
+        ],
+        "nodes": 7
+    },
+    "astar": {
+        "path": [
+            "A",
+            "B",
+            "E",
+            "G"
+        ],
+        "cost": 11,
+        "explored": [
+            "A",
+            "B",
+            "E",
+            "D",
+            "C",
+            "G"
+        ],
+        "nodes": 6
+    }
+}

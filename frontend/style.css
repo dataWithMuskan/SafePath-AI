@@ -1,0 +1,911 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: #f8f3ff;
+    color: #40365c;
+    overflow-x: hidden;
+}
+
+
+/* =========================
+   TOP BAR
+========================= */
+
+.topbar {
+    height: 86px;
+    padding: 14px 28px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    background: linear-gradient(
+        90deg,
+        #ffffff,
+        #f8edff
+    );
+
+    border-bottom: 1px solid #eadcf5;
+}
+
+.topbar h1 {
+    margin: 0;
+    color: #633db8;
+    font-size: 25px;
+}
+
+.topbar p {
+    margin: 3px 0 0;
+    font-size: 12px;
+    color: #8b7ca5;
+}
+
+.live-badge {
+    background: #fff;
+    border: 1px solid #e2d1f3;
+    color: #8c4fbd;
+    border-radius: 20px;
+    padding: 9px 15px;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+
+/* =========================
+   MAIN LAYOUT
+========================= */
+
+.app-layout {
+    display: grid;
+    grid-template-columns: 300px minmax(620px, 1fr) 300px;
+
+    gap: 16px;
+
+    padding: 16px;
+
+    min-height: calc(100vh - 86px);
+}
+
+
+/* =========================
+   CARDS
+========================= */
+
+.card,
+.algorithm-card,
+.analysis-card,
+.smart-card {
+
+    background: rgba(255,255,255,0.94);
+
+    border: 1px solid #eadcf5;
+
+    border-radius: 18px;
+
+    box-shadow:
+        0 7px 22px rgba(107, 71, 151, 0.08);
+
+}
+
+
+/* =========================
+   LEFT
+========================= */
+
+.left-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.route-card {
+    padding: 20px;
+}
+
+.card h2 {
+    margin: 0 0 18px;
+
+    color: #6340b3;
+
+    font-size: 14px;
+
+    letter-spacing: 0.5px;
+}
+
+.route-card label {
+    display: block;
+
+    margin-bottom: 7px;
+
+    color: #89749f;
+
+    font-size: 10px;
+
+    font-weight: 700;
+}
+
+select {
+    width: 100%;
+
+    height: 44px;
+
+    border: 1px solid #dfd1ee;
+
+    border-radius: 12px;
+
+    padding: 0 12px;
+
+    background: #fff;
+
+    color: #493b68;
+
+    outline: none;
+}
+
+select:focus {
+    border-color: #a77be0;
+}
+
+.swap-icon {
+    width: 34px;
+    height: 34px;
+
+    border-radius: 50%;
+
+    background: #f2e8ff;
+
+    color: #8250cb;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin: 8px auto;
+}
+
+.mode-label {
+    margin-top: 18px;
+}
+
+.mode-buttons {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 6px;
+
+    margin-bottom: 17px;
+}
+
+.mode-btn {
+    height: 68px;
+
+    border-radius: 11px;
+
+    border: 1px solid #e1d5ee;
+
+    background: white;
+
+    color: #6f6281;
+
+    cursor: pointer;
+
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+    align-items: center;
+
+    gap: 5px;
+
+    font-size: 10px;
+}
+
+.mode-btn:first-child {
+    font-size: 11px;
+}
+
+.mode-btn.active {
+    border-color: #a272dc;
+
+    background: #f6edff;
+
+    color: #7546bd;
+
+    box-shadow:
+        inset 0 0 0 1px #d8bff4;
+}
+
+.mode-btn span {
+    font-size: 9px;
+}
+
+.compare-btn {
+    width: 100%;
+    height: 48px;
+
+    border: none;
+
+    border-radius: 12px;
+
+    background: linear-gradient(
+        90deg,
+        #8050d4,
+        #d35aad
+    );
+
+    color: white;
+
+    font-size: 13px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 6px 15px rgba(125, 75, 188, 0.25);
+}
+
+.compare-btn:hover {
+    transform: translateY(-1px);
+}
+
+.reset-btn {
+    width: 100%;
+    height: 42px;
+
+    margin-top: 9px;
+
+    border: 1px solid #e1d5ed;
+
+    border-radius: 11px;
+
+    background: white;
+
+    color: #765f8f;
+
+    cursor: pointer;
+}
+
+
+/* =========================
+   LEGEND
+========================= */
+
+.legend-card {
+    padding: 18px;
+}
+
+.legend-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    gap: 10px 7px;
+
+    font-size: 9px;
+
+    color: #796b89;
+}
+
+
+/* =========================
+   MAP
+========================= */
+
+.map-panel {
+    min-width: 0;
+}
+
+.map-header {
+    height: 48px;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+}
+
+.map-header h2 {
+    margin: 0;
+
+    font-size: 17px;
+
+    color: #6540ad;
+}
+
+.map-header p {
+    margin: 3px 0 0;
+
+    font-size: 10px;
+
+    color: #998baa;
+}
+
+.algorithm-key {
+    display: flex;
+
+    gap: 7px;
+
+    align-items: center;
+
+    font-size: 10px;
+
+    color: #8b7c9b;
+}
+
+.dot {
+    width: 9px;
+    height: 9px;
+
+    border-radius: 50%;
+
+    display: inline-block;
+
+    margin-left: 7px;
+}
+
+.purple {
+    background: #8054d5;
+}
+
+.orange {
+    background: #ef9b43;
+}
+
+
+.city-map {
+
+    width: 100%;
+
+    height: calc(
+        100vh - 180px
+    );
+
+    min-height: 600px;
+
+    max-height: 720px;
+
+    background: #f2e5fb;
+
+    border: 1px solid #e2d3ee;
+
+    border-radius: 18px;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 8px 25px rgba(112, 73, 147, 0.09);
+}
+
+#mapSvg {
+    width: 100%;
+    height: 100%;
+}
+
+.map-bg {
+    fill: #f6eafa;
+}
+
+
+/* =========================
+   ROADS
+========================= */
+
+.road {
+    fill: none;
+
+    stroke: #d5d0da;
+
+    stroke-width: 12;
+
+    stroke-linecap: round;
+
+    opacity: 0.75;
+}
+
+.route-dijkstra {
+    fill: none;
+
+    stroke: #8054d5;
+
+    stroke-width: 8;
+
+    stroke-linecap: round;
+
+    stroke-linejoin: round;
+
+    opacity: 0.92;
+}
+
+.route-astar {
+    fill: none;
+
+    stroke: #ef9b43;
+
+    stroke-width: 5;
+
+    stroke-linecap: round;
+
+    stroke-linejoin: round;
+
+    opacity: 0.95;
+
+    stroke-dasharray: 10 7;
+}
+
+.explored-dot {
+    fill: #ffd86b;
+
+    stroke: #fff;
+
+    stroke-width: 3;
+}
+
+
+/* =========================
+   NODES
+========================= */
+
+.map-node-circle {
+    fill: white;
+
+    stroke: #8d78a7;
+
+    stroke-width: 2.5;
+
+    filter:
+        drop-shadow(
+            0 3px 3px rgba(72, 44, 96, 0.16)
+        );
+}
+
+.map-node-text {
+    font-size: 15px;
+
+    font-weight: 800;
+
+    fill: #55456d;
+
+    text-anchor: middle;
+
+    dominant-baseline: middle;
+}
+
+.map-node-label {
+    font-size: 9px;
+
+    font-weight: 600;
+
+    fill: #665674;
+
+    text-anchor: middle;
+}
+
+.start-node {
+    stroke: #43bd86;
+
+    stroke-width: 5;
+}
+
+.goal-node {
+    stroke: #df526e;
+
+    stroke-width: 5;
+}
+
+.search-node {
+    fill: #fff0a7;
+}
+
+.path-node-dijkstra {
+    fill: #eadbff;
+
+    stroke: #8054d5;
+
+    stroke-width: 4;
+}
+
+.path-node-astar {
+    fill: #ffe9cf;
+
+    stroke: #ef9b43;
+
+    stroke-width: 4;
+}
+
+
+/* =========================
+   LANDMARKS
+========================= */
+
+.landmark {
+    font-size: 21px;
+
+    text-anchor: middle;
+}
+
+.landmark-label {
+    font-size: 8px;
+
+    fill: #806c91;
+
+    text-anchor: middle;
+
+    font-weight: 700;
+}
+
+.feature-icon {
+    font-size: 18px;
+
+    text-anchor: middle;
+}
+
+.feature-label {
+    font-size: 7px;
+
+    fill: #806c91;
+
+    text-anchor: middle;
+
+    font-weight: 700;
+}
+
+.park {
+    fill: #ddf5e4;
+
+    stroke: #b8e5c6;
+
+    stroke-width: 1.5;
+}
+
+.park-title {
+    fill: #52906b;
+
+    font-size: 11px;
+
+    font-weight: 800;
+}
+
+.tree {
+    font-size: 25px;
+}
+
+.water {
+    fill: #c6edff;
+
+    stroke: #a6dcef;
+}
+
+.water-icon {
+    font-size: 23px;
+
+    text-anchor: middle;
+}
+
+.house {
+    fill: #ffe9f0;
+
+    stroke: #e9c1d0;
+
+    stroke-width: 2;
+}
+
+.house-icon {
+    font-size: 32px;
+
+    text-anchor: middle;
+}
+
+.house-title {
+    fill: #9c6377;
+
+    font-size: 10px;
+
+    font-weight: 800;
+
+    text-anchor: middle;
+}
+
+
+/* =========================
+   MAP STATUS
+========================= */
+
+.map-status {
+    display: flex;
+
+    gap: 16px;
+
+    padding: 10px 4px;
+
+    font-size: 9px;
+
+    color: #82738e;
+}
+
+
+/* =========================
+   RIGHT PANEL
+========================= */
+
+.right-panel {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 12px;
+
+    min-width: 0;
+}
+
+.algorithm-card {
+    padding: 17px;
+}
+
+.algorithm-card h2 {
+    margin: 0 0 17px;
+
+    font-size: 14px;
+}
+
+.dijkstra-card h2 {
+    color: #7044c1;
+}
+
+.astar-card h2 {
+    color: #d78436;
+}
+
+.stats {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 7px;
+
+    margin-bottom: 14px;
+}
+
+.stats small {
+    display: block;
+
+    color: #a194aa;
+
+    font-size: 8px;
+}
+
+.stats strong {
+    display: block;
+
+    margin-top: 4px;
+
+    color: #554565;
+
+    font-size: 15px;
+}
+
+.route-output {
+    min-height: 36px;
+
+    margin-top: 5px;
+
+    padding: 9px;
+
+    border-radius: 9px;
+
+    background: #faf7fd;
+
+    color: #765f8b;
+
+    font-size: 9px;
+
+    line-height: 1.5;
+
+    word-break: break-word;
+}
+
+
+/* =========================
+   PATH ANALYSIS
+========================= */
+
+.analysis-card {
+    padding: 16px;
+}
+
+.analysis-card h2 {
+    margin-bottom: 3px;
+}
+
+.analysis-card > p {
+    margin: 0 0 12px;
+
+    font-size: 8px;
+
+    color: #9b8da8;
+}
+
+.analysis-item {
+    display: flex;
+
+    gap: 10px;
+
+    align-items: center;
+
+    background: #fff;
+
+    border: 1px solid #eee4f4;
+
+    border-radius: 11px;
+
+    padding: 9px;
+
+    margin-top: 7px;
+}
+
+.analysis-icon {
+    width: 31px;
+    height: 31px;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    border-radius: 9px;
+
+    background: #f7ecff;
+
+    font-size: 15px;
+}
+
+.analysis-item b {
+    display: block;
+
+    font-size: 9px;
+
+    color: #665575;
+}
+
+.analysis-item small {
+    display: block;
+
+    margin-top: 3px;
+
+    color: #a095a9;
+
+    font-size: 8px;
+}
+
+
+/* =========================
+   SMART CHOICE
+========================= */
+
+.smart-card {
+    padding: 16px;
+
+    background: #effaf3;
+
+    border-color: #d3eddd;
+}
+
+.smart-card h2 {
+    color: #399267;
+
+    margin-bottom: 10px;
+}
+
+#smartChoice {
+    color: #3c7657;
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    line-height: 1.5;
+}
+
+.ai-insight {
+    margin-top: 9px;
+
+    padding-top: 9px;
+
+    border-top: 1px solid #d7ebdd;
+
+    color: #6e8c78;
+
+    font-size: 9px;
+
+    line-height: 1.5;
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 1250px) {
+
+    .app-layout {
+        grid-template-columns:
+            270px
+            minmax(520px, 1fr)
+            270px;
+    }
+
+}
+
+@media (max-width: 1050px) {
+
+    .app-layout {
+        grid-template-columns: 250px 1fr;
+    }
+
+    .right-panel {
+        grid-column: 1 / -1;
+
+        display: grid;
+
+        grid-template-columns:
+            1fr 1fr;
+    }
+
+    .smart-card {
+        grid-column: 1 / -1;
+    }
+
+}
+
+@media (max-width: 800px) {
+
+    .app-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .right-panel {
+        grid-column: auto;
+
+        display: flex;
+    }
+
+    .city-map {
+        min-height: 500px;
+    }
+
+}
+/* =====================================================
+   SafePath AI - Accessibility Road Visual
+===================================================== */
+
+.stair-road {
+    stroke: #c8becf;
+    stroke-dasharray: 7 5;
+}
+
+.wheelchair-blocked {
+    stroke: #e78a9b !important;
+    stroke-width: 14 !important;
+    stroke-dasharray: 5 7 !important;
+    opacity: 0.55 !important;
+}
+
+.wheelchair-blocked::after {
+    content: "";
+}
+
+.search-node {
+    fill: #fff0a7;
+}
+
+.route-dijkstra {
+    pointer-events: none;
+}
+
+.route-astar {
+    pointer-events: none;
+}

@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>SafePath AI</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+</head>
+
+
+<body>
+
+<header class="topbar">
+
+    <div>
+
+        <h1>🧭 SafePath AI</h1>
+
+        <p>
+            Intelligent Route Search for Safer & Accessible Mobility
+        </p>
+
+    </div>
+
+    <div class="live-badge">
+        ● LIVE DEMO
+    </div>
+
+</header>
+
+
+<div class="app-layout">
+
+
+    <!-- ============================= -->
+    <!-- LEFT CONTROL PANEL -->
+    <!-- ============================= -->
+
+    <aside class="left-panel">
+
+        <section class="card route-card">
+
+            <h2>ROUTE SETUP</h2>
+
+            <label>START</label>
+
+            <select id="start"></select>
+
+
+            <div class="swap-icon">
+                ⇅
+            </div>
+
+
+            <label>DESTINATION</label>
+
+            <select id="goal"></select>
+
+
+            <label class="mode-label">
+                TRAVEL MODE
+            </label>
+
+
+            <div class="mode-buttons">
+
+                <button
+                    id="normalMode"
+                    class="mode-btn active"
+                    onclick="selectMode('normal')"
+                >
+                    🧍
+                    <span>Normal</span>
+                </button>
+
+
+                <button
+                    id="wheelchairMode"
+                    class="mode-btn"
+                    onclick="selectMode('wheelchair')"
+                >
+                    ♿
+                    <span>Wheelchair</span>
+                </button>
+
+
+                <button
+                    id="womenMode"
+                    class="mode-btn"
+                    onclick="selectMode('women')"
+                >
+                    👩
+                    <span>Women Safety</span>
+                </button>
+
+            </div>
+
+
+            <button
+                class="compare-btn"
+                onclick="startSearch()"
+            >
+
+                ▶ &nbsp; Compare Algorithms
+
+            </button>
+
+
+            <button
+                class="reset-btn"
+                onclick="resetDemo()"
+            >
+
+                ↻ &nbsp; Reset Map
+
+            </button>
+
+        </section>
+
+
+        <!-- LEGEND -->
+
+        <section class="card legend-card">
+
+            <h2>MAP LEGEND</h2>
+
+            <div class="legend-grid">
+
+                <span>🟢 Start Point</span>
+                <span>🔴 Destination</span>
+
+                <span>📹 CCTV Camera</span>
+                <span>💡 Street Light</span>
+
+                <span>♿ Ramp</span>
+                <span>🪜 Stairs</span>
+
+                <span>🌳 Park</span>
+                <span>💧 Water Area</span>
+
+                <span>📚 Library</span>
+                <span>🏫 School</span>
+
+                <span>🏥 Hospital</span>
+                <span>🚇 Metro</span>
+
+                <span>🛍️ Mall</span>
+                <span>👮 Police</span>
+
+            </div>
+
+        </section>
+
+    </aside>
+
+
+
+    <!-- ============================= -->
+    <!-- MAP -->
+    <!-- ============================= -->
+
+    <main class="map-panel">
+
+        <div class="map-header">
+
+            <div>
+
+                <h2>LIVE ROUTE MAP</h2>
+
+                <p>
+                    Watch both algorithms explore the same road network
+                </p>
+
+            </div>
+
+
+            <div class="algorithm-key">
+
+                <span class="dot purple"></span>
+                Dijkstra
+
+                <span class="dot orange"></span>
+                A* Search
+
+            </div>
+
+        </div>
+
+
+        <div class="city-map">
+
+            <svg
+                id="mapSvg"
+                viewBox="0 0 960 650"
+                preserveAspectRatio="none"
+            >
+
+                <!-- decorative background -->
+                <rect
+                    x="0"
+                    y="0"
+                    width="960"
+                    height="650"
+                    class="map-bg"
+                />
+
+
+                <!-- park -->
+
+                <rect
+                    x="35"
+                    y="500"
+                    width="290"
+                    height="120"
+                    rx="60"
+                    class="park"
+                />
+
+                <text
+                    x="60"
+                    y="530"
+                    class="park-title"
+                >
+                    🌳 GREEN PARK
+                </text>
+
+                <text x="90" y="575" class="tree">🌳</text>
+                <text x="160" y="590" class="tree">🌳</text>
+                <text x="230" y="565" class="tree">🌳</text>
+
+                <ellipse
+                    cx="275"
+                    cy="590"
+                    rx="42"
+                    ry="20"
+                    class="water"
+                />
+
+                <text
+                    x="270"
+                    y="600"
+                    class="water-icon"
+                >
+                    💧
+                </text>
+
+
+                <!-- HOUSE -->
+
+                <rect
+                    x="50"
+                    y="350"
+                    width="150"
+                    height="105"
+                    rx="18"
+                    class="house"
+                />
+
+                <text
+                    x="95"
+                    y="390"
+                    class="house-icon"
+                >
+                    🏠
+                </text>
+
+                <text
+                    x="86"
+                    y="425"
+                    class="house-title"
+                >
+                    RESIDENTIAL
+                </text>
+
+
+                <!-- route roads generated by JS -->
+
+                <g id="roadLayer"></g>
+
+
+                <!-- algorithm routes -->
+
+                <g id="routeLayerDijkstra"></g>
+                <g id="routeLayerAstar"></g>
+
+
+                <!-- exploration -->
+
+                <g id="explorationLayer"></g>
+
+
+                <!-- landmark layer -->
+
+                <g id="landmarkLayer"></g>
+
+
+                <!-- nodes -->
+
+                <g id="nodeLayer"></g>
+
+            </svg>
+
+        </div>
+
+
+        <div class="map-status">
+
+            <span>
+                🟡 Searching
+            </span>
+
+            <span>
+                🟣 Dijkstra Route
+            </span>
+
+            <span>
+                🟠 A* Route
+            </span>
+
+            <span>
+                🚫 Wheelchair avoids stairs
+            </span>
+
+        </div>
+
+    </main>
+
+
+
+    <!-- ============================= -->
+    <!-- RIGHT PANEL -->
+    <!-- ============================= -->
+
+    <aside class="right-panel">
+
+
+        <!-- DIJKSTRA -->
+
+        <section class="algorithm-card dijkstra-card">
+
+            <h2>
+                ⌁ Dijkstra Algorithm
+            </h2>
+
+            <div class="stats">
+
+                <div>
+                    <small>Distance</small>
+                    <strong id="dijkstraDistance">—</strong>
+                </div>
+
+                <div>
+                    <small>Nodes Explored</small>
+                    <strong id="dijkstraCounter">0</strong>
+                </div>
+
+                <div>
+                    <small>Cost</small>
+                    <strong id="dijkstraCost">—</strong>
+                </div>
+
+            </div>
+
+            <small>Route</small>
+
+            <div
+                class="route-output"
+                id="dijkstraRoute"
+            >
+                —
+            </div>
+
+        </section>
+
+
+
+        <!-- ASTAR -->
+
+        <section class="algorithm-card astar-card">
+
+            <h2>
+                ★ A* Search Algorithm
+            </h2>
+
+            <div class="stats">
+
+                <div>
+                    <small>Distance</small>
+                    <strong id="astarDistance">—</strong>
+                </div>
+
+                <div>
+                    <small>Nodes Explored</small>
+                    <strong id="astarCounter">0</strong>
+                </div>
+
+                <div>
+                    <small>Cost</small>
+                    <strong id="astarCost">—</strong>
+                </div>
+
+            </div>
+
+            <small>Route</small>
+
+            <div
+                class="route-output"
+                id="astarRoute"
+            >
+                —
+            </div>
+
+        </section>
+
+
+
+        <!-- PATH ANALYSIS -->
+
+        <section class="analysis-card">
+
+            <h2>
+                🧭 PATH ANALYSIS
+            </h2>
+
+            <p>
+                Compare different route strategies
+            </p>
+
+
+            <div class="analysis-item">
+
+                <span class="analysis-icon">
+                    ⚡
+                </span>
+
+                <div>
+
+                    <b>Shortest Path</b>
+
+                    <small id="shortestText">
+                        Cost: —
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <div class="analysis-item">
+
+                <span class="analysis-icon">
+                    🛡️
+                </span>
+
+                <div>
+
+                    <b>Safest Path</b>
+
+                    <small id="safestText">
+                        Cost: —
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <div class="analysis-item">
+
+                <span class="analysis-icon">
+                    🗺️
+                </span>
+
+                <div>
+
+                    <b>Longest Path</b>
+
+                    <small id="longestText">
+                        Cost: —
+                    </small>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- SMART CHOICE -->
+
+        <section class="smart-card">
+
+            <h2>
+                🏆 Smartest Choice
+            </h2>
+
+            <div id="smartChoice">
+                Run comparison to see the result
+            </div>
+
+            <div
+                id="aiInsight"
+                class="ai-insight"
+            >
+                Select a route and compare algorithms.
+            </div>
+
+        </section>
+
+
+    </aside>
+
+</div>
+
+
+<script src="app.js"></script>
+
+</body>
+
+</html>
